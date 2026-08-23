@@ -1,0 +1,28 @@
+{
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.errorSign": "✗",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "i",
+  "diagnostic.hintSign": "?",
+  "suggest.noselect": false,
+  "suggest.enablePreview": true,
+  "suggest.timeout": 500,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "json",
+    "html",
+    "css",
+    "python",
+    "c",
+    "cpp",
+    "go",
+    "rust"
+  ],
+  "snippets.userSnippetsDirectory": "~/.vim/snippets",
+  "list.source.grep.defaultArgs": ["--hidden", "--smart-case"],
+  "list.source.files.defaultArgs": ["--hidden"]
+}
