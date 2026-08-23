@@ -1,5 +1,7 @@
 # .vimrc
 
+![Screenshot of vim](screenshot.png)
+
 A minimal, fast, and IDE-like Vim configuration by [Jean Carlos (jctr)](https://github.com/jeanctr).  
 Built around [vim-plug](https://github.com/junegunn/vim-plug), [coc.nvim](https://github.com/neoclide/coc.nvim) for LSP intelligence, and [fzf](https://github.com/junegunn/fzf.vim) + `ripgrep` for blazing fast search.
 
