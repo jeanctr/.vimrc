@@ -48,9 +48,7 @@ set mouse=a clipboard=unnamedplus
 set noerrorbells visualbell t_vb=
 set wildmenu wildignore+=*/node_modules/*,*/.git/*,*/dist/*,*/build/*,*.o,*.pyc
 
-if !exists('g:vscode')
-    let g:mapleader = "\<Space>"
-endif
+let g:mapleader = "\<Space>"
 
 " ---------- Search ----------
 set incsearch hlsearch ignorecase smartcase
