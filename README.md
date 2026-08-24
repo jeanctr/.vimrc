@@ -1,4 +1,4 @@
-# Vim Configuration
+# Vim config
 
 A minimal and practical Vim configuration focused on speed, navigation, search,
 and development.
@@ -23,27 +23,37 @@ and development.
 
 ## Installation
 
-### 1. Install vim-plug
+> If you already have a `~/.vim` folder, back it up first
+> (`mv ~/.vim ~/.vim.bak`), since the next step clones directly into it.
+
+### 1. Clone the configuration
+
+```sh
+git clone https://github.com/jeanctr/dotfiles.git ~/.vim
+```
+
+### 2. Load it from your `.vimrc`
+
+Add this line to your `~/.vimrc` (create the file if it doesn't exist):
+
+```vim
+source ~/.vim/init.vim
+```
+
+### 3. Install vim-plug
 
 ```sh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-### 2. Clone the configuration
-
-```sh
-git clone https://github.com/jeanctr/.vimrc.git ~/dotfiles/vimrc
-ln -sf ~/dotfiles/vimrc/.vimrc ~/.vimrc
-```
-
-### 3. Install plugins
+### 4. Install plugins
 
 Open Vim and run:
 
-````sh
+```sh
 :PlugInstall
-````
+```
 
 `coc.nvim` may require additional language extensions depending on
 the filetypes you use.
@@ -53,22 +63,21 @@ the filetypes you use.
 The `<Leader>` key is `<Space>`.
 
 | Category   | Mapping              | Action                          |
-| ---------- | -------------------- | ------------------------------- |
-| Search     | `<Leader> f`         | Find files                      |
-|            | `<Leader> b`         | Find buffers                    |
-|            | `<Leader> g`         | Search the project with ripgrep |
-| Navigation | `<C-h/j/k/l>`        | Move between splits             |
-|            | `<Leader> n`         | Toggle file explorer            |
-|            | `TAB` / `S-TAB`      | Next / previous buffer          |
-| LSP        | `gd` / `gr`          | Go to definition / references   |
-|            | `K`                  | Show documentation              |
-|            | `<Leader> rn`        | Rename symbol                   |
-| Editing    | `jk` / `kj`          | Exit insert mode                |
-|            | `<Leader> /`         | Toggle comments                 |
-|            | `<C-s>` / `<C-q>`    | Save / save and quit            |
-| Git        | `<Leader> gj` / `gk` | Next / previous Git hunk        |
+| ---------- | --------------------- | -------------------------------- |
+| Search     | `<Leader> f`          | Find files                       |
+|            | `<Leader> b`          | Find buffers                     |
+|            | `<Leader> g`          | Search the project with ripgrep  |
+| Navigation | `<C-h/j/k/l>`         | Move between splits              |
+|            | `<Leader> n`          | Toggle file explorer             |
+|            | `TAB` / `S-TAB`       | Next / previous buffer           |
+| LSP        | `gd` / `gr`           | Go to definition / references    |
+|            | `K`                   | Show documentation               |
+|            | `<Leader> rn`         | Rename symbol                    |
+| Editing    | `jk` / `kj`           | Exit insert mode                 |
+|            | `<Leader> /`          | Toggle comments                  |
+|            | `<C-s>` / `<C-q>`     | Save / save and quit             |
+| Git        | `<Leader> gj` / `gk`  | Next / previous Git hunk         |
 
 ## License
 
 MIT
-

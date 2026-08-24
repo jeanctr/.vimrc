@@ -3,7 +3,8 @@
 "  ▌▙▖▐▖▌  https://github.com/jeanctr/
 " ▙▌       https://jeanctr.sh
 "
-" A customized .vimrc for vim (https://www.vim.org/)
+" A customized init.vim for Neovim (https://neovim.io/)
+" Compatible with Vim (https://www.vim.org/)
 " https://github.com/jeanctr/.vimrc/
 " license MIT
 
@@ -17,38 +18,51 @@ call plug#begin('~/.vim/plug')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'joshdick/onedark.vim'
-    
+
     " Essential Productivity
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
     Plug 'alvan/vim-closetag'
-    
+
     " Navigation and Files
     Plug 'scrooloose/nerdtree'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'ryanoasis/vim-devicons'
     Plug 'airblade/vim-rooter'
-    
+
     " Search
     Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
     Plug 'junegunn/fzf.vim'
-    
+
     " Git and LSP
     Plug 'mhinz/vim-signify'
+    Plug 'tpope/vim-fugitive'
+    Plug 'machakann/vim-highlightedyank'
+    Plug 'wellle/targets.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 filetype plugin indent on
 
 " ---------- General ----------
-set hidden encoding=utf-8
-set mouse=a clipboard=unnamedplus
+set hidden
+set encoding=utf-8
+set mouse=a
+set clipboard=unnamedplus
 set noerrorbells visualbell t_vb=
+set backspace=indent,eol,start
 set wildmenu wildignore+=*/node_modules/*,*/.git/*,*/dist/*,*/build/*,*.o,*.pyc
 
 let g:mapleader = "\<Space>"
+
+" ---------- Persistent undo ----------
+if !isdirectory($HOME . "/.vim/undodir")
+    call mkdir($HOME . "/.vim/undodir", "p")
+endif
+set undofile
+set undodir=~/.vim/undodir
 
 " ---------- Search ----------
 set incsearch hlsearch ignorecase smartcase
@@ -87,13 +101,16 @@ xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 
 " Window and buffer navigation
-nnoremap <C-h> <C-w>h | nnoremap <C-j> <C-w>j | nnoremap <C-k> <C-w>k | nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 
 " Comments
-nnoremap <space>/ :Commentary<CR>
-vnoremap <space>/ :Commentary<CR>
+nnoremap <leader>/ :Commentary<CR>
+vnoremap <leader>/ :Commentary<CR>
 
 " ---------- Airline & Colors ----------
 let g:airline#extensions#tabline#enabled = 1
@@ -139,12 +156,15 @@ nnoremap <silent><nowait> <space>e :<C-u>CocList extensions<cr>
 " ---------- FZF ----------------
 let $FZF_DEFAULT_COMMAND = "rg --files --hidden"
 let g:fzf_layout = {'down': '~40%'}
-map <Leader>f :Files<CR>
-map <Leader>b :Buffers<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>g :Rg<CR>
 
 " ---------- NERDTree ----------
-map <Leader>n :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+" Mejora visual de iconos en NERDTree
+let g:NERDTreeDevIconsDefaultFolderOpenSymbol = ' '
+let g:NERDTreeDevIconsDefaultFileSymbol = ' '
 
 " ---------- Signify (Git Gutter) ----------
 let g:signify_sign_add = '+'
@@ -156,3 +176,9 @@ nmap <leader>gk <plug>(signify-prev-hunk)
 " ---------- Closetag ----------
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue,*.jsx,*.tsx'
 let g:closetag_filetypes = 'html,xhtml,phtml,javascript,javascriptreact,typescriptreact'
+
+" ---------- Auto-format on save (coc.nvim) ----------
+augroup CocFormatOnSave
+    autocmd!
+    autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx,*.json,*.html,*.css,*.py,*.vue CocCommand editor.action.formatDocument
+augroup END
